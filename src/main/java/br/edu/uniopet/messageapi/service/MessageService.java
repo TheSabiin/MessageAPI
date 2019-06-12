@@ -9,6 +9,9 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
+import java.util.Date;
+import java.util.List;
+
 import static br.edu.uniopet.messageapi.util.Asserts.assertNull;
 
 @Service
@@ -33,6 +36,12 @@ public class MessageService {
 
     @Transactional
     public Message save(Message message){
+        message.setCreated(new Date());
+
         return repository.save(message);
+    }
+
+    public List<Message> list(){
+        return repository.findAll();
     }
 }

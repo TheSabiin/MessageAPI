@@ -1,13 +1,13 @@
 package br.edu.uniopet.messageapi.model;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Message {
@@ -17,6 +17,9 @@ public class Message {
     private Long id;
 
     private String title;
+
+    @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+    private Date created;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Body body;
